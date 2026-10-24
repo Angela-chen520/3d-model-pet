@@ -1,0 +1,50 @@
+{
+  "wisdom_achievements": [
+    {
+      "id": "study_1",
+      "title": "📖 專注新手：初次番茄鐘",
+      "description": "完成第 1 次 30 分鐘未中斷番茄鐘學習（獲得 +15 智慧經驗值，消耗 -20 體力值）",
+      "required_wisdom": 15,
+      "reward_coins": 15,
+      "icon": "🥉",
+      "badge": "🥉"
+    },
+    {
+      "id": "study_3",
+      "title": "💡 知識探索者：三連專注",
+      "description": "累計角色智慧經驗值達 45 點（完成 3 次 30 分鐘番茄鐘）",
+      "required_wisdom": 45,
+      "reward_coins": 30,
+      "icon": "🥈",
+      "badge": "🥈"
+    },
+    {
+      "id": "study_6",
+      "title": "🧠 電競學霸：極限心流",
+      "description": "累計角色智慧經驗值達 90 點（完成 6 次 30 分鐘番茄鐘）",
+      "required_wisdom": 90,
+      "reward_coins": 60,
+      "icon": "🥇",
+      "badge": "🥇"
+    },
+    {
+      "id": "study_10",
+      "title": "👑 Create or Destroy 傳奇智者",
+      "description": "累計角色智慧經驗值達 150 點（完成 10 次 30 分鐘番茄鐘）",
+      "required_wisdom": 150,
+      "reward_coins": 120,
+      "icon": "💎",
+      "badge": "💎"
+    }
+  ],
+  "care_achievements": [
+    {
+      "id": "streak_7",
+      "title": "🔥 7日羈絆：解鎖真實體質",
+      "description": "持續與人物互動超過 7 天（正式解鎖隨機生病感冒事件與深層互動）",
+      "required_streak": 7,
+      "icon": "🏥",
+      "badge": "🏥"
+    }
+  ]
+}

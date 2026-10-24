@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" width="120" height="120">
+  <defs>
+    <linearGradient id="bg_tea_matcha_latte" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0D0F14"/>
+      <stop offset="100%" stop-color="#1B4332"/>
+    </linearGradient>
+  </defs>
+  <rect x="4" y="4" width="112" height="112" rx="18" fill="url(#bg_tea_matcha_latte)" stroke="#52B788" stroke-width="2.5"/>
+  <circle cx="60" cy="48" r="28" fill="#52B788" fill-opacity="0.16" stroke="#52B788" stroke-width="1" stroke-dasharray="4 3"/>
+  <text x="60" y="58" font-size="34" text-anchor="middle">🍵</text>
+  <text x="60" y="90" font-family="sans-serif" font-size="12" font-weight="bold" fill="#E6EAF0" text-anchor="middle">抹茶拿鐵</text>
+  <text x="60" y="106" font-family="sans-serif" font-size="10" fill="#52B788" text-anchor="middle">+20 恢復經驗值</text>
+</svg>

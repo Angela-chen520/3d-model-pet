@@ -1,0 +1,585 @@
+{
+  "xueling": {
+    "main_fullbody": {
+      "path": "assets/xueling/turnaround/main_fullbody.png",
+      "size": [
+        152,
+        348
+      ],
+      "label": "雪靈 - 主立繪 (Full Body)"
+    },
+    "turn_1_front": {
+      "path": "assets/xueling/turnaround/turn_1_front.png",
+      "size": [
+        117,
+        228
+      ],
+      "label": "雪靈五視圖 - 正面 FRONT"
+    },
+    "turn_2_left45": {
+      "path": "assets/xueling/turnaround/turn_2_left45.png",
+      "size": [
+        113,
+        228
+      ],
+      "label": "雪靈五視圖 - 左前45度 45°LEFT"
+    },
+    "turn_3_side": {
+      "path": "assets/xueling/turnaround/turn_3_side.png",
+      "size": [
+        103,
+        233
+      ],
+      "label": "雪靈五視圖 - 左側 SIDE"
+    },
+    "turn_4_right45": {
+      "path": "assets/xueling/turnaround/turn_4_right45.png",
+      "size": [
+        117,
+        233
+      ],
+      "label": "雪靈五視圖 - 右後45度 45°RIGHT"
+    },
+    "turn_5_back": {
+      "path": "assets/xueling/turnaround/turn_5_back.png",
+      "size": [
+        113,
+        233
+      ],
+      "label": "雪靈五視圖 - 背面 BACK"
+    },
+    "head_1_front": {
+      "path": "assets/xueling/heads/head_1_front.png",
+      "size": [
+        113,
+        135
+      ],
+      "label": "雪靈 - 頭部 正面 FRONT"
+    },
+    "head_2_left45": {
+      "path": "assets/xueling/heads/head_2_left45.png",
+      "size": [
+        126,
+        137
+      ],
+      "label": "雪靈 - 頭部 左前45度 45°LEFT"
+    },
+    "head_3_side": {
+      "path": "assets/xueling/heads/head_3_side.png",
+      "size": [
+        121,
+        134
+      ],
+      "label": "雪靈 - 頭部 左側 SIDE"
+    },
+    "head_4_right45": {
+      "path": "assets/xueling/heads/head_4_right45.png",
+      "size": [
+        119,
+        135
+      ],
+      "label": "雪靈 - 頭部 右後45度 45°RIGHT"
+    },
+    "head_5_back": {
+      "path": "assets/xueling/heads/head_5_back.png",
+      "size": [
+        103,
+        134
+      ],
+      "label": "雪靈 - 頭部 背面 BACK"
+    },
+    "detail_hair": {
+      "path": "assets/xueling/details/detail_hair.png",
+      "size": [
+        103,
+        85
+      ],
+      "label": "雪靈細節 - 髮型拆解 (高馬尾)"
+    },
+    "prop_sunglasses": {
+      "path": "assets/xueling/details/prop_sunglasses.png",
+      "size": [
+        80,
+        31
+      ],
+      "label": "雪靈細節 - 配件 - 藍色圓形墨鏡"
+    },
+    "costume_jacket_front": {
+      "path": "assets/xueling/details/costume_jacket_front.png",
+      "size": [
+        109,
+        89
+      ],
+      "label": "雪靈細節 - LEGEND X 外套 (正面)"
+    },
+    "costume_jacket_back": {
+      "path": "assets/xueling/details/costume_jacket_back.png",
+      "size": [
+        104,
+        87
+      ],
+      "label": "雪靈細節 - LEGEND X 外套 (背面)"
+    },
+    "costume_tshirt": {
+      "path": "assets/xueling/details/costume_tshirt.png",
+      "size": [
+        77,
+        48
+      ],
+      "label": "雪靈細節 - LEGEND X 短袖 T-Shirt"
+    },
+    "costume_shorts_front": {
+      "path": "assets/xueling/details/costume_shorts_front.png",
+      "size": [
+        60,
+        39
+      ],
+      "label": "雪靈細節 - 電競短褲 (正面)"
+    },
+    "costume_shorts_back": {
+      "path": "assets/xueling/details/costume_shorts_back.png",
+      "size": [
+        66,
+        43
+      ],
+      "label": "雪靈細節 - 電競短褲 (背面)"
+    },
+    "costume_shoes": {
+      "path": "assets/xueling/details/costume_shoes.png",
+      "size": [
+        109,
+        46
+      ],
+      "label": "雪靈細節 - 電競運動鞋與高筒藍襪"
+    },
+    "expr_1_normal": {
+      "path": "assets/xueling/expressions/expr_1_normal.png",
+      "size": [
+        145,
+        155
+      ],
+      "label": "雪靈表情 - 普通 (Normal)"
+    },
+    "expr_2_happy": {
+      "path": "assets/xueling/expressions/expr_2_happy.png",
+      "size": [
+        145,
+        155
+      ],
+      "label": "雪靈表情 - 超開心/閃耀 (Happy ✨)"
+    },
+    "expr_3_angry": {
+      "path": "assets/xueling/expressions/expr_3_angry.png",
+      "size": [
+        145,
+        155
+      ],
+      "label": "雪靈表情 - 暴怒/爆青筋 (Angry 💢)"
+    },
+    "expr_4_surprised": {
+      "path": "assets/xueling/expressions/expr_4_surprised.png",
+      "size": [
+        145,
+        155
+      ],
+      "label": "雪靈表情 - 大震驚/雷擊 (Shocked ⚡)"
+    },
+    "expr_5_shy": {
+      "path": "assets/xueling/expressions/expr_5_shy.png",
+      "size": [
+        145,
+        155
+      ],
+      "label": "雪靈表情 - 害羞心動/冒愛心 (Shy 💕)"
+    },
+    "expr_6_focused": {
+      "path": "assets/xueling/expressions/expr_6_focused.png",
+      "size": [
+        145,
+        155
+      ],
+      "label": "雪靈表情 - 番茄鐘極限專注 (Focused 💡)"
+    },
+    "expr_7_sick": {
+      "path": "assets/xueling/expressions/expr_7_sick.png",
+      "size": [
+        145,
+        155
+      ],
+      "label": "雪靈表情 - 重感冒/腸胃炎 (Sick 🤒🌡️)"
+    }
+  },
+  "lingfeng": {
+    "turn_1_front": {
+      "path": "assets/lingfeng/turnaround/turn_1_front.png",
+      "size": [
+        146,
+        242
+      ],
+      "label": "凌風五視圖 - 正面 FRONT"
+    },
+    "main_fullbody": {
+      "path": "assets/lingfeng/turnaround/main_fullbody.png",
+      "size": [
+        146,
+        242
+      ],
+      "label": "凌風 - 主立繪 (Full Body)"
+    },
+    "turn_2_side": {
+      "path": "assets/lingfeng/turnaround/turn_2_side.png",
+      "size": [
+        135,
+        249
+      ],
+      "label": "凌風五視圖 - 側面 SIDE"
+    },
+    "turn_3_back": {
+      "path": "assets/lingfeng/turnaround/turn_3_back.png",
+      "size": [
+        124,
+        251
+      ],
+      "label": "凌風五視圖 - 背面 BACK"
+    },
+    "turn_4_three_quarter": {
+      "path": "assets/lingfeng/turnaround/turn_4_three_quarter.png",
+      "size": [
+        142,
+        251
+      ],
+      "label": "凌風五視圖 - 斜側面 3/4"
+    },
+    "turn_5_top": {
+      "path": "assets/lingfeng/turnaround/turn_5_top.png",
+      "size": [
+        126,
+        174
+      ],
+      "label": "凌風五視圖 - 俯視 TOP"
+    },
+    "expr_1_normal": {
+      "path": "assets/lingfeng/expressions/expr_1_normal.png",
+      "size": [
+        122,
+        120
+      ],
+      "label": "凌風表情 - 普通 (Normal)"
+    },
+    "expr_2_smile": {
+      "path": "assets/lingfeng/expressions/expr_2_smile.png",
+      "size": [
+        126,
+        120
+      ],
+      "label": "凌風表情 - 超開心/閃耀 (Happy ✨)"
+    },
+    "expr_3_angry": {
+      "path": "assets/lingfeng/expressions/expr_3_angry.png",
+      "size": [
+        125,
+        120
+      ],
+      "label": "凌風表情 - 暴怒/爆青筋 (Angry 💢)"
+    },
+    "expr_4_surprised": {
+      "path": "assets/lingfeng/expressions/expr_4_surprised.png",
+      "size": [
+        125,
+        120
+      ],
+      "label": "凌風表情 - 大震驚/雷擊 (Shocked ⚡)"
+    },
+    "expr_5_shy": {
+      "path": "assets/lingfeng/expressions/expr_5_shy.png",
+      "size": [
+        119,
+        120
+      ],
+      "label": "凌風表情 - 害羞心動/冒愛心 (Shy 💕)"
+    },
+    "prop_carkey": {
+      "path": "assets/lingfeng/props/prop_carkey.png",
+      "size": [
+        64,
+        80
+      ],
+      "label": "凌風裝備 - BMW 跑車鑰匙"
+    },
+    "prop_sunglasses": {
+      "path": "assets/lingfeng/props/prop_sunglasses.png",
+      "size": [
+        78,
+        56
+      ],
+      "label": "凌風裝備 - 電競飛行員墨鏡"
+    },
+    "prop_headphones": {
+      "path": "assets/lingfeng/props/prop_headphones.png",
+      "size": [
+        77,
+        97
+      ],
+      "label": "凌風裝備 - 電競耳罩式耳機"
+    },
+    "prop_gaming_chair": {
+      "path": "assets/lingfeng/props/prop_gaming_chair.png",
+      "size": [
+        67,
+        106
+      ],
+      "label": "凌風裝備 - 專屬藍黑電競座椅"
+    },
+    "costume_jacket_front": {
+      "path": "assets/lingfeng/details/costume_jacket_front.png",
+      "size": [
+        89,
+        108
+      ],
+      "label": "凌風服裝 - E-SPORTS 連帽外套 (正面)"
+    },
+    "costume_jacket_back": {
+      "path": "assets/lingfeng/details/costume_jacket_back.png",
+      "size": [
+        89,
+        107
+      ],
+      "label": "凌風服裝 - E-SPORTS 連帽外套 (背面)"
+    },
+    "costume_hood": {
+      "path": "assets/lingfeng/details/costume_hood.png",
+      "size": [
+        63,
+        77
+      ],
+      "label": "凌風服裝 - 連帽設計細節"
+    },
+    "costume_pants": {
+      "path": "assets/lingfeng/details/costume_pants.png",
+      "size": [
+        65,
+        108
+      ],
+      "label": "凌風服裝 - 多口袋機能工裝長褲"
+    },
+    "costume_shoes": {
+      "path": "assets/lingfeng/details/costume_shoes.png",
+      "size": [
+        45,
+        78
+      ],
+      "label": "凌風服裝 - 高筒賽車運動鞋"
+    },
+    "racing_scene": {
+      "path": "assets/lingfeng/turnaround/racing_scene.png",
+      "size": [
+        255,
+        515
+      ],
+      "label": "凌風 - 藍色跑車駕駛特寫"
+    },
+    "expr_6_focused": {
+      "path": "assets/lingfeng/expressions/expr_6_focused.png",
+      "size": [
+        122,
+        120
+      ],
+      "label": "凌風表情 - 番茄鐘極限專注 (Focused 💡)"
+    },
+    "expr_7_sick": {
+      "path": "assets/lingfeng/expressions/expr_7_sick.png",
+      "size": [
+        125,
+        120
+      ],
+      "label": "凌風表情 - 重感冒/腸胃炎 (Sick 🤒🌡️)"
+    }
+  },
+  "shop_items": {
+    "water_normal": {
+      "path": "assets/shop_items/water_normal.svg",
+      "name": "一般水",
+      "effect": "+5 恢復值",
+      "price": 5,
+      "emoji": "💧",
+      "accent": "#1472FF"
+    },
+    "water_pure": {
+      "path": "assets/shop_items/water_pure.svg",
+      "name": "純水",
+      "effect": "+10 恢復值",
+      "price": 8,
+      "emoji": "💦",
+      "accent": "#00D2FF"
+    },
+    "water_spring": {
+      "path": "assets/shop_items/water_spring.svg",
+      "name": "靈泉水",
+      "effect": "+100 恢復值",
+      "price": 50,
+      "emoji": "✨",
+      "accent": "#00F5D4"
+    },
+    "tea_black_latte": {
+      "path": "assets/shop_items/tea_black_latte.svg",
+      "name": "紅茶拿鐵",
+      "effect": "+20 恢復經驗值",
+      "price": 15,
+      "emoji": "🧋",
+      "accent": "#E07A5F"
+    },
+    "tea_matcha_latte": {
+      "path": "assets/shop_items/tea_matcha_latte.svg",
+      "name": "抹茶拿鐵",
+      "effect": "+20 恢復經驗值",
+      "price": 15,
+      "emoji": "🍵",
+      "accent": "#52B788"
+    },
+    "tea_boba": {
+      "path": "assets/shop_items/tea_boba.svg",
+      "name": "珍珠奶茶",
+      "effect": "+30 恢復經驗值",
+      "price": 20,
+      "emoji": "🧋",
+      "accent": "#F4A261"
+    },
+    "tea_oolong": {
+      "path": "assets/shop_items/tea_oolong.svg",
+      "name": "烏龍奶茶",
+      "effect": "+30 恢復經驗值",
+      "price": 20,
+      "emoji": "🥤",
+      "accent": "#D4A373"
+    },
+    "food_hotdog": {
+      "path": "assets/shop_items/food_hotdog.svg",
+      "name": "熱狗",
+      "effect": "+5 恢復經驗值",
+      "price": 5,
+      "emoji": "🌭",
+      "accent": "#E63946"
+    },
+    "food_tea_egg": {
+      "path": "assets/shop_items/food_tea_egg.svg",
+      "name": "茶葉蛋",
+      "effect": "+5 恢復經驗值",
+      "price": 5,
+      "emoji": "🥚",
+      "accent": "#B5838D"
+    },
+    "food_bread": {
+      "path": "assets/shop_items/food_bread.svg",
+      "name": "麵包",
+      "effect": "+10 恢復值",
+      "price": 8,
+      "emoji": "🍞",
+      "accent": "#F4A261"
+    },
+    "food_chawanmushi": {
+      "path": "assets/shop_items/food_chawanmushi.svg",
+      "name": "茶碗蒸",
+      "effect": "+15 恢復經驗值",
+      "price": 12,
+      "emoji": "🍮",
+      "accent": "#FFD166"
+    },
+    "food_noodles": {
+      "path": "assets/shop_items/food_noodles.svg",
+      "name": "泡麵",
+      "effect": "+15 經驗值",
+      "price": 15,
+      "emoji": "🍜",
+      "accent": "#FF9F1C"
+    },
+    "food_chicken_cutlet": {
+      "path": "assets/shop_items/food_chicken_cutlet.svg",
+      "name": "炸雞排",
+      "effect": "+20 恢復經驗值",
+      "price": 18,
+      "emoji": "🍗",
+      "accent": "#F77F00"
+    },
+    "food_bun": {
+      "path": "assets/shop_items/food_bun.svg",
+      "name": "包子",
+      "effect": "+40 恢復經驗值",
+      "price": 25,
+      "emoji": "🥟",
+      "accent": "#EAE2B7"
+    },
+    "food_shaobing": {
+      "path": "assets/shop_items/food_shaobing.svg",
+      "name": "燒餅油條",
+      "effect": "+40 恢復經驗值",
+      "price": 25,
+      "emoji": "🥖",
+      "accent": "#E9C46A"
+    },
+    "food_bento": {
+      "path": "assets/shop_items/food_bento.svg",
+      "name": "便當",
+      "effect": "+80 恢復經驗值",
+      "price": 40,
+      "emoji": "🍱",
+      "accent": "#FF595E"
+    },
+    "ice_cream": {
+      "path": "assets/shop_items/ice_cream.svg",
+      "name": "冰淇淋",
+      "effect": "+10 經驗值",
+      "price": 10,
+      "emoji": "🍦",
+      "accent": "#FF99C8"
+    },
+    "haagen_dazs": {
+      "path": "assets/shop_items/haagen_dazs.svg",
+      "name": "哈根達斯冰品",
+      "effect": "+30 恢復經驗值",
+      "price": 22,
+      "emoji": "🍨",
+      "accent": "#C77DFF"
+    },
+    "bad_expired_water": {
+      "path": "assets/shop_items/bad_expired_water.svg",
+      "name": "過期水",
+      "effect": "-50 恢復值",
+      "price": 3,
+      "emoji": "☠️",
+      "accent": "#8AC926"
+    },
+    "bad_expired_food": {
+      "path": "assets/shop_items/bad_expired_food.svg",
+      "name": "過期食品",
+      "effect": "-70 恢復經驗值",
+      "price": 3,
+      "emoji": "🦠",
+      "accent": "#6A994E"
+    },
+    "bad_mystery_drink": {
+      "path": "assets/shop_items/bad_mystery_drink.svg",
+      "name": "不知放多少天的飲料",
+      "effect": "-70 恢復 (觸發腸胃炎)",
+      "price": 3,
+      "emoji": "🧪",
+      "accent": "#9B5DE5"
+    },
+    "med_cold": {
+      "path": "assets/shop_items/med_cold.svg",
+      "name": "感冒藥",
+      "effect": "+25 恢復 (治感冒)",
+      "price": 18,
+      "emoji": "💊",
+      "accent": "#4CC9F0"
+    },
+    "med_gastro_3d": {
+      "path": "assets/shop_items/med_gastro_3d.svg",
+      "name": "腸胃藥三天份",
+      "effect": "+100 恢復 (治腸胃炎)",
+      "price": 45,
+      "emoji": "🏥",
+      "accent": "#06D6A0"
+    }
+  },
+  "effects": {}
+}

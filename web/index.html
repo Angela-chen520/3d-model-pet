@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Create or Destroy — 雪靈 & 凌風 AI 桌寵</title>
+  <link rel="stylesheet" href="/web/style.css" />
+</head>
+<body class="pet-product-mode">
+  <!-- Toast Notification Container -->
+  <div id="toast-container"></div>
+
+  <!-- ==================== DESKTOP PET MAIN WINDOW ==================== -->
+  <div id="app-wrapper" class="app-wrapper">
+    <!-- Compact Top Title / Status Bar -->
+    <header class="top-bar">
+      <div class="brand-group">
+        <div class="brand-logo">⚡</div>
+        <div>
+          <div class="brand-title">
+            CREATE OR DESTROY
+            <span id="version-badge" class="version-badge">v1.0.0</span>
+          </div>
+          <div class="brand-subtitle">AI 桌面寵物正式版</div>
+        </div>
+      </div>
+
+      <!-- Character Switcher -->
+      <div class="char-switcher">
+        <button id="btn-char-xueling" class="char-switch-btn active" onclick="switchCharacter('xueling')">
+          ❄️ 雪靈
+        </button>
+        <button id="btn-char-lingfeng" class="char-switch-btn" onclick="switchCharacter('lingfeng')">
+          🏎️ 凌風
+        </button>
+      </div>
+
+      <!-- Player Economy Stats -->
+      <div class="economy-bar">
+        <div class="econ-pill" title="累計總經驗值">
+          <span class="econ-label">✨ EXP</span>
+          <span id="stat-total-exp" class="econ-val">100.0</span>
+        </div>
+        <div class="econ-pill highlight-cyan" title="可兌換經驗值（每 50 EXP 兌換 25 金幣）">
+          <span class="econ-label">💎 可兌換</span>
+          <span id="stat-avail-exp" class="econ-val">100.0</span>
+          <button class="mini-exchange-btn" onclick="quickExchangeCoins()">換金幣</button>
+        </div>
+        <div class="econ-pill highlight-gold" title="Create or Destroy 島民商店金幣">
+          <span class="econ-label">🪙 金幣</span>
+          <span id="stat-coins" class="econ-val">60</span>
+        </div>
+        <div class="econ-pill" title="連續互動天數（滿 7 天解鎖隨機感冒）">
+          <span class="econ-label">🔥</span>
+          <span id="stat-streak" class="econ-val">1 天</span>
+        </div>
+      </div>
+
+      <!-- System Controls -->
+      <div class="top-actions">
+        <button id="btn-minigame-toggle" class="action-pill-btn minigame-on" onclick="toggleMinigameMode()" title="開啟或關閉養成小遊戲數值系統">
+          🎮 養成模式：開
+        </button>
+        <button id="btn-layout-mode" class="action-pill-btn" onclick="toggleLayoutMode()" title="在「精簡桌寵視窗」與「雙欄展開模式」之間切換">
+          🖥️ 展開雙欄面板
+        </button>
+        <button id="btn-dev-tools" class="icon-btn" onclick="toggleDevMode()" title="顯示/隱藏快速測試按鈕（如5秒番茄鐘、測試生病）">
+          🔧
+        </button>
+        <button class="icon-btn" onclick="openModal('modal-updater')" title="熱更新包管理">📦</button>
+        <button class="icon-btn" onclick="openModal('modal-settings')" title="Discord 與 AI 設定">⚙️</button>
+      </div>
+    </header>
+
+    <!-- ==================== MAIN WORKSPACE ==================== -->
+    <main class="main-grid">
+      <!-- DESKTOP PET STAGE CARD -->
+      <section class="pet-stage-card">
+        <!-- Stage Top HUD -->
+        <div class="stage-top-hud">
+          <div class="char-identity">
+            <span id="stage-char-name" class="stage-char-name">雪靈 (Xueling)</span>
+            <span id="stage-char-level" class="level-badge">Lv.2</span>
+            <span id="stage-health-badge" class="health-badge healthy">✨ 健康良好</span>
+          </div>
+          <div class="stage-mini-indicators">
+            <span id="badge-dirty-alert" class="alert-chip hidden" onclick="interactPet('bath')">🛁 待洗澡！點我洗泡泡浴</span>
+            <span id="badge-gastro-alert" class="alert-chip danger hidden" onclick="advanceGastroDay()">🤢 腸胃炎療程中</span>
+          </div>
+        </div>
+
+        <!-- Visual Character Display Area -->
+        <div id="pet-canvas-area" class="pet-canvas-area">
+          <div id="particle-layer" class="particle-layer"></div>
+
+          <!-- Exaggerated Anime Expression Close-up HUD Window -->
+          <div class="expression-hud-box" onclick="togglePoseDrawer()" title="點擊可切換 7 種誇張動漫漫符表情與視角">
+            <div class="expr-hud-title">🎭 漫符表情 (點我切換)</div>
+            <img id="pet-expr-img" src="/assets/xueling/expressions/expr_1_normal.png" alt="角色表情特寫" />
+            <div id="pet-expr-label" class="expr-hud-label">普通 (Normal)</div>
+          </div>
+
+          <!-- Active Pomodoro Floating Badge on Stage -->
+          <div id="stage-pomo-hud" class="stage-pomo-hud hidden">
+            <div class="pomo-hud-title">⏱️ 番茄鐘專注中 💡</div>
+            <div id="stage-pomo-timer" class="pomo-hud-time">30:00</div>
+          </div>
+
+          <!-- Main Fullbody / Turnaround Character Sprite -->
+          <div id="pet-sprite-container" class="pet-sprite-container breathing" onclick="interactPet('pat')" title="點擊角色摸摸頭 (+好感度)">
+            <img id="pet-main-img" src="/assets/xueling/turnaround/main_fullbody.png" alt="桌寵主立繪" />
+          </div>
+
+          <!-- Compact On-Stage Mini Status Overlay -->
+          <div class="stage-mini-stats-bar">
+            <span title="人物體力值">⚡ 體力 <strong id="mini-val-stamina">100</strong></span>
+            <span title="角色智慧經驗值">🧠 智慧 <strong id="mini-val-wisdom">0</strong></span>
+            <span title="飢餓值">🍔 飢餓 <strong id="mini-val-hunger">20%</strong></span>
+            <span title="髒污值">🛁 髒污 <strong id="mini-val-dirt">15%</strong></span>
+            <span title="角色好感度">❤️ 好感 <strong id="mini-val-affection">50</strong></span>
+          </div>
+        </div>
+
+        <!-- Character Speech Bubble -->
+        <div class="speech-bubble-box">
+          <div class="speech-speaker" id="speech-speaker">❄️ 雪靈 (Xueling)：</div>
+          <div class="speech-text" id="speech-text">
+            嗨！我是雪靈 ✨ 點擊下方按鈕可以摸摸我、開啟 30 分鐘番茄鐘、逛島民商店或去 Discord 擲骰子喔！
+          </div>
+        </div>
+
+        <!-- Direct Pet Care Interaction Bar -->
+        <div class="interaction-toolbar">
+          <button class="interact-btn" onclick="interactPet('pat')">👋 摸摸頭 <small>+好感</small></button>
+          <button class="interact-btn" onclick="interactPet('poke')">💢 戳一戳 <small>誇張反應</small></button>
+          <button class="interact-btn" onclick="interactPet('bath')">🛁 洗泡泡浴 <small>髒污歸零</small></button>
+          <button class="interact-btn" onclick="interactPet('rest')">💤 休息充電 <small>+35體力</small></button>
+          <button id="btn-special-prop" class="interact-btn accent" onclick="triggerSpecialProp()">
+            🕶️ 配件特寫
+          </button>
+          <button class="interact-btn" onclick="togglePoseDrawer()">
+            🎭 表情/五視圖 <small>切換外觀</small>
+          </button>
+        </div>
+
+        <!-- Popover Drawer for 7 Expressions & Turnaround Views (Collapsible in Pet Mode) -->
+        <div id="pose-drawer" class="pose-drawer hidden">
+          <div class="selector-group">
+            <div class="selector-title">🎭 誇張動漫漫符 7 表情即時切換：</div>
+            <div id="expr-buttons-row" class="chip-row"></div>
+          </div>
+          <div class="selector-group" style="margin-top:6px;">
+            <div class="selector-title">🔄 角色五視圖旋轉 & 服裝配件拆解預覽：</div>
+            <div id="view-buttons-row" class="chip-row"></div>
+          </div>
+        </div>
+
+        <!-- DESKTOP PET BOTTOM FEATURE DOCK (Opens Functional Windows) -->
+        <div class="pet-feature-dock">
+          <button class="dock-btn active" data-tab="tab-care" onclick="openFeatureDrawer('tab-care')">
+            <span class="dock-icon">🍅</span>
+            <span>番茄鐘 & 狀態</span>
+          </button>
+          <button class="dock-btn" data-tab="tab-shop" onclick="openFeatureDrawer('tab-shop')">
+            <span class="dock-icon">🏪</span>
+            <span>島民商店(23)</span>
+          </button>
+          <button class="dock-btn" data-tab="tab-discord" onclick="openFeatureDrawer('tab-discord')">
+            <span class="dock-icon">🎲</span>
+            <span>Discord 骰子</span>
+          </button>
+          <button class="dock-btn" data-tab="tab-chat" onclick="openFeatureDrawer('tab-chat')">
+            <span class="dock-icon">💬</span>
+            <span>AI 角色對話</span>
+          </button>
+        </div>
+      </section>
+
+      <!-- FUNCTIONAL DRAWER / CONTROL PANEL -->
+      <section id="control-panel-card" class="control-panel-card">
+        <div class="drawer-header-bar">
+          <nav class="panel-tabs">
+            <button class="tab-btn active" data-tab="tab-care" onclick="switchTab('tab-care')">
+              🍅 30分番茄鐘 & 養成狀態
+            </button>
+            <button class="tab-btn" data-tab="tab-shop" onclick="switchTab('tab-shop')">
+              🏪 島民商店 (23商品)
+            </button>
+            <button class="tab-btn" data-tab="tab-discord" onclick="switchTab('tab-discord')">
+              🎲 Discord 打卡與骰子
+            </button>
+            <button class="tab-btn" data-tab="tab-chat" onclick="switchTab('tab-chat')">
+              💬 AI 角色對話
+            </button>
+          </nav>
+          <button class="drawer-close-btn" onclick="closeFeatureDrawer()" title="收起面板，只保留桌寵主視窗">✕ 收起面板</button>
+        </div>
+
+        <!-- ==================== TAB 1: CARE STATS & 30-MIN POMODORO ==================== -->
+        <div id="tab-care" class="tab-content active">
+          <!-- 30-Minute Pomodoro Study Timer Card -->
+          <div class="panel-section pomodoro-card">
+            <div class="pomo-header">
+              <div>
+                <h3>⏱️ 30分鐘番茄鐘專注學習</h3>
+                <p class="pomo-desc">
+                  每完成一次 <strong>30分鐘</strong> 專注學習（中途未停止）：角色智慧經驗值 <strong>+15 點</strong>、人物體力值 <strong>-20 點</strong>，並解鎖<strong>人物學習成就</strong>！
+                </p>
+              </div>
+              <div class="pomo-timer-display" id="pomo-timer-display">30:00</div>
+            </div>
+
+            <div class="progress-track pomo-track">
+              <div id="pomo-progress-fill" class="progress-fill fill-pomo" style="width: 0%"></div>
+            </div>
+
+            <div class="pomo-controls">
+              <button id="btn-pomo-start" class="primary-btn" onclick="startPomodoro(1800)">
+                ▶️ 開始 30 分鐘番茄鐘
+              </button>
+              <button id="btn-pomo-stop" class="danger-btn" onclick="stopPomodoro()" disabled>
+                ⏹️ 中途停止
+              </button>
+              <button id="btn-pomo-quick" class="accent-btn dev-only hidden" onclick="startPomodoro(5)">
+                ⚡ [調試] 5秒快速完成番茄鐘
+              </button>
+            </div>
+          </div>
+
+          <!-- Character Status Gauges -->
+          <div class="panel-section">
+            <div class="section-header">
+              <h3>📊 角色養成狀態數值</h3>
+              <div class="stat-pills-mini">
+                <span>❤️ 好感：<strong id="val-affection">50</strong></span>
+                <span>💖 恢復經驗：<strong id="val-recovery">100</strong></span>
+                <span>🧠 智慧經驗：<strong id="val-wisdom">0</strong> 點</span>
+              </div>
+            </div>
+
+            <div class="bars-grid">
+              <div class="stat-bar-item">
+                <div class="bar-label-row">
+                  <span>⚡ 人物體力值 <small>(番茄鐘 -20)</small></span>
+                  <span id="bar-txt-stamina">100 / 100</span>
+                </div>
+                <div class="progress-track">
+                  <div id="bar-fill-stamina" class="progress-fill fill-stamina" style="width: 100%"></div>
+                </div>
+              </div>
+
+              <div class="stat-bar-item">
+                <div class="bar-label-row">
+                  <span>🧠 角色智慧經驗值 <small>(番茄鐘 +15)</small></span>
+                  <span id="bar-txt-wisdom">0 點 (已完成 0 次)</span>
+                </div>
+                <div class="progress-track">
+                  <div id="bar-fill-wisdom" class="progress-fill fill-wisdom" style="width: 0%"></div>
+                </div>
+              </div>
+
+              <div class="stat-bar-item">
+                <div class="bar-label-row">
+                  <span>🍔 飢餓值 <small>(餵食可降低)</small></span>
+                  <span id="bar-txt-hunger">20%</span>
+                </div>
+                <div class="progress-track">
+                  <div id="bar-fill-hunger" class="progress-fill fill-hunger" style="width: 20%"></div>
+                </div>
+              </div>
+
+              <div class="stat-bar-item">
+                <div class="bar-label-row">
+                  <span>🛁 髒污值 <small>(洗泡泡浴歸零)</small></span>
+                  <span id="bar-txt-dirtiness">15%</span>
+                </div>
+                <div class="progress-track">
+                  <div id="bar-fill-dirtiness" class="progress-fill fill-dirtiness" style="width: 15%"></div>
+                </div>
+              </div>
+
+              <div class="stat-bar-item">
+                <div class="bar-label-row">
+                  <span>😴 疲勞值 <small>(休息充電降低)</small></span>
+                  <span id="bar-txt-fatigue">15%</span>
+                </div>
+                <div class="progress-track">
+                  <div id="bar-fill-fatigue" class="progress-fill fill-fatigue" style="width: 15%"></div>
+                </div>
+              </div>
+
+              <div class="stat-bar-item medical-status-box">
+                <div class="bar-label-row">
+                  <span>🏥 健康與醫療照護</span>
+                  <span id="txt-health-detail">健康良好 ✨</span>
+                </div>
+                <div class="medical-actions-row">
+                  <button class="xs-btn" onclick="quickUseMedicine('med_cold')">💊 服用感冒藥 (+25)</button>
+                  <button class="xs-btn" onclick="quickUseMedicine('med_gastro_3d')">🏥 服用腸胃藥三天份 (+100)</button>
+                  <button id="btn-advance-gastro" class="xs-btn accent hidden" onclick="advanceGastroDay()">
+                    ⏩ 推進 1 天療程
+                  </button>
+                  <button class="xs-btn dev-only hidden" onclick="interactPet('trigger_cold_test')">
+                    🤒 [調試] 觸發感冒
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Achievements -->
+          <div class="panel-section">
+            <div class="section-header">
+              <h3>🏆 人物學習成就 & 七日羈絆成就</h3>
+            </div>
+            <div id="achievements-grid" class="achievements-grid"></div>
+          </div>
+        </div>
+
+        <!-- ==================== TAB 2: CREATE OR DESTROY ISLAND SHOP ==================== -->
+        <div id="tab-shop" class="tab-content">
+          <div class="panel-section">
+            <div class="section-header">
+              <div>
+                <h3>🏪 Create or Destroy 島民商店（全 23 種商品）</h3>
+                <p class="sub-hint">
+                  使用島民金幣購買補給品！注意：「不知放多少天的飲料 (-70)」會觸發<strong>腸胃炎</strong>，需購買「腸胃藥三天份 (+100)」經過三天時間康復。
+                </p>
+              </div>
+              <div class="shop-balance-box">
+                🪙 金幣：<strong id="shop-coins-val">60</strong>
+              </div>
+            </div>
+
+            <div class="shop-filter-row">
+              <button class="filter-chip active" onclick="filterShop('all', this)">全部商品 (23)</button>
+              <button class="filter-chip" onclick="filterShop('water', this)">💧 飲水補給 (3)</button>
+              <button class="filter-chip" onclick="filterShop('drink', this)">🧋 手搖茶飲 (4)</button>
+              <button class="filter-chip" onclick="filterShop('food', this)">🍱 熟食餐點 (9)</button>
+              <button class="filter-chip" onclick="filterShop('dessert', this)">🍨 冰品甜點 (2)</button>
+              <button class="filter-chip" onclick="filterShop('dark', this)">☠️ 過期/謎之飲料 (3)</button>
+              <button class="filter-chip" onclick="filterShop('medicine', this)">💊 感冒藥 & 腸胃藥三天份 (2)</button>
+            </div>
+
+            <div id="shop-items-grid" class="shop-items-grid"></div>
+          </div>
+        </div>
+
+        <!-- ==================== TAB 3: DISCORD ECONOMY & MULTIPLAYER DICE ==================== -->
+        <div id="tab-discord" class="tab-content">
+          <div class="panel-section">
+            <div class="section-header">
+              <div>
+                <h3>🎲 Discord 打卡、骰子與金幣兌換</h3>
+                <p class="sub-hint">
+                  每日打卡 <strong>+20 EXP</strong>｜留言 <strong>+0.5 EXP</strong>｜單人骰子 <strong>+1 EXP</strong>｜多人同輪骰子最高點者 <strong>+5 EXP</strong>｜每 <strong>50 EXP 兌換 25 島民金幣</strong>
+                </p>
+              </div>
+            </div>
+
+            <div class="discord-cards-grid">
+              <div class="discord-action-card">
+                <div class="d-card-title">📅 每日打卡 (`/checkin`)</div>
+                <div class="d-card-desc">每天打卡一次獲得 <strong>+20 經驗值</strong>，並累積連續互動天數。</div>
+                <div class="d-card-btns">
+                  <button class="primary-btn sm" onclick="runDiscordCommand('/checkin')">✅ 今日打卡 (+20 EXP)</button>
+                  <button class="secondary-btn sm dev-only hidden" onclick="runDiscordCommand('/checkin next')">
+                    🌅 [調試] 跨日打卡 (+20 EXP)
+                  </button>
+                </div>
+              </div>
+
+              <div class="discord-action-card">
+                <div class="d-card-title">💬 頻道留言獎勵 (`+0.5 EXP`)</div>
+                <div class="d-card-desc">在 Discord 頻道發送互動留言累積 <strong>+0.5 經驗值</strong>。</div>
+                <div class="d-card-btns">
+                  <button class="primary-btn sm" onclick="runDiscordCommand('今天跟雪靈和凌風一起努力！')">
+                    💬 發送頻道留言 (+0.5 EXP)
+                  </button>
+                </div>
+              </div>
+
+              <div class="discord-action-card wide">
+                <div class="d-card-title">🎲 骰骰子對決（單人 `+1 EXP` ／ 多人同輪點數最大者 `+5 EXP`）</div>
+                <div class="d-card-desc">
+                  單獨一人骰獲得 <strong>+1 EXP</strong>；多人同一輪一起骰時，<strong>點數最大者獲得 +5 EXP</strong>！
+                </div>
+                <div class="d-card-btns">
+                  <button class="accent-btn sm" onclick="rollDiscordDice('solo')">
+                    🎲 單獨一人骰骰子 (+1 EXP)
+                  </button>
+                  <button class="primary-btn sm" onclick="rollDiscordDice('multi')">
+                    🎲🏆 多人同輪一起骰骰子 (最高點 +5 EXP)
+                  </button>
+                </div>
+                <div id="dice-arena-box" class="dice-arena-box hidden"></div>
+              </div>
+
+              <div class="discord-action-card wide">
+                <div class="d-card-title">🪙 島民商店金幣兌換 (`/exchange`)</div>
+                <div class="d-card-desc">
+                  每 <strong>50 點可兌換經驗值</strong> 兌換 <strong>25 枚 Create or Destroy 島民商店金幣</strong>。
+                </div>
+                <div class="d-card-btns">
+                  <button class="gold-btn sm" onclick="runDiscordCommand('/exchange 1')">
+                    🪙 消耗 50 EXP ➔ 兌換 25 島民金幣
+                  </button>
+                  <button class="secondary-btn sm" onclick="runDiscordCommand('/exchange 2')">
+                    🪙 消耗 100 EXP ➔ 兌換 50 島民金幣
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <div class="discord-terminal-box">
+              <div class="terminal-header">💻 Discord 指令輸入框（支援 `/checkin`、`/roll solo`、`/roll multi`、`/exchange` 或任意留言）</div>
+              <div class="terminal-input-row">
+                <input
+                  type="text"
+                  id="discord-cmd-input"
+                  placeholder="輸入指令或留言..."
+                  onkeydown="if(event.key==='Enter') submitDiscordInput()"
+                />
+                <button class="primary-btn" onclick="submitDiscordInput()">發送</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ==================== TAB 4: AI PERSONA CHAT & LOGS ==================== -->
+        <div id="tab-chat" class="tab-content">
+          <div class="panel-section chat-section">
+            <div class="section-header">
+              <h3>🤖 與 <span id="chat-char-title">雪靈 (Xueling)</span> 對話</h3>
+            </div>
+
+            <div class="quick-prompts-row">
+              <button class="prompt-chip" onclick="sendQuickChat('報告目前狀態！')">📊 報告目前狀態</button>
+              <button class="prompt-chip" onclick="sendQuickChat('陪我開啟 30 分鐘番茄鐘專注讀書！')">⏱️ 陪我開番茄鐘</button>
+              <button class="prompt-chip" onclick="sendQuickChat('去島民商店吃豚骨泡麵跟冰淇淋！')">🍜 去島民商店吃泡麵</button>
+              <button class="prompt-chip" onclick="sendQuickChat('開 BMW 跑車帶我去賽道兜風！')">🏎️ 開 BMW 跑車兜風</button>
+              <button class="prompt-chip" onclick="sendQuickChat('最喜歡你了！超可愛 ❤️')">💕 最喜歡你了</button>
+            </div>
+
+            <div id="chat-history-box" class="chat-history-box"></div>
+
+            <div class="chat-input-row">
+              <input
+                type="text"
+                id="chat-user-input"
+                placeholder="對角色說點什麼吧（按 Enter 發送）..."
+                onkeydown="if(event.key==='Enter') sendChatMessage()"
+              />
+              <button class="primary-btn" onclick="sendChatMessage()">💬 發送</button>
+            </div>
+          </div>
+
+          <div class="panel-section">
+            <div class="section-header">
+              <h3>📜 互動紀錄</h3>
+            </div>
+            <div id="activity-logs-box" class="activity-logs-box"></div>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <!-- ==================== MODAL 1: HOT-UPDATE MANAGER ==================== -->
+  <div id="modal-updater" class="modal-backdrop hidden">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3>📦 熱更新包管理中心</h3>
+        <button class="close-btn" onclick="closeModal('modal-updater')">✕</button>
+      </div>
+      <div class="modal-body">
+        <div class="info-banner">
+          <strong>💡 玩家存檔自動保護：</strong><br/>
+          套用 `.zip` 更新包時，系統會自動保護您的玩家存檔、經驗值、金幣與成就，絕不覆蓋！
+        </div>
+
+        <div class="modal-section">
+          <h4>1️⃣ 套用熱更新包 (`update_patch_vX.Y.zip`)</h4>
+          <div class="upload-row">
+            <input type="file" id="patch-file-input" accept=".zip" />
+            <button class="primary-btn" onclick="uploadHotUpdatePatch()">🚀 立即套用更新包</button>
+          </div>
+        </div>
+
+        <div class="modal-section">
+          <h4>2️⃣ 打包生成新版本輕量熱更新包</h4>
+          <div class="form-row">
+            <input type="text" id="new-patch-ver" value="1.0.1" placeholder="版本號" style="width:120px;" />
+            <input type="text" id="new-patch-notes" value="新增島民商店優化與角色漫符動態表現" placeholder="更新說明..." style="flex:1;" />
+            <button class="accent-btn" onclick="generateSamplePatch()">🛠️ 生成更新包</button>
+          </div>
+          <div id="patch-result-box" class="patch-result-box hidden"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== MODAL 2: DISCORD & AI SETTINGS ==================== -->
+  <div id="modal-settings" class="modal-backdrop hidden">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3>⚙️ Discord 連動 & AI 引擎設定</h3>
+        <button class="close-btn" onclick="closeModal('modal-settings')">✕</button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <label>🔗 Discord Webhook URL（選填，填入後打卡、骰子、兌換金幣會即時推播至 Discord 頻道）：</label>
+          <input type="text" id="set-discord-webhook" placeholder="https://discord.com/api/webhooks/..." />
+        </div>
+        <div class="form-group">
+          <label>🤖 AI 對話引擎：</label>
+          <select id="set-ai-provider">
+            <option value="offline">⚡ 內建雙角色情境 AI（免 API Key・100% 離線可用）</option>
+            <option value="gemini">✨ Google Gemini 1.5 Flash API</option>
+            <option value="ollama">🦙 本地端 Ollama 模型</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>🔑 Gemini API Key（選填）：</label>
+          <input type="password" id="set-ai-key" placeholder="AIzaSy..." />
+        </div>
+        <div class="modal-footer">
+          <button class="primary-btn" onclick="saveSettings()">💾 儲存設定</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="/web/app.js"></script>
+</body>
+</html>
